@@ -50,7 +50,7 @@
 
 .inputWrapper input {
   width: 100%;
-  padding: 10px 38px 10px 38px;
+  padding: 12px 14px 12px 44px;
   border: 1px solid #d1d5db;
   border-radius: 8px;
   font-size: 15px;
@@ -69,18 +69,24 @@
 
 .icon {
   position: absolute;
-  left: 12px;
+  left: 14px;
   color: #94a3b8;
+  pointer-events: none;
 }
 
 .eye {
   position: absolute;
   right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
   background: transparent;
   border: none;
   cursor: pointer;
   color: #64748b;
   padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .errorText {
