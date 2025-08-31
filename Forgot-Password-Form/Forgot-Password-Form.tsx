@@ -2,17 +2,11 @@ import React, { useState } from "react";
 import { Mail, Loader2, AlertCircle, CheckCircle2 } from "lucide-react";
 import styles from "./ForgotPasswordForm.module.css";
 
-interface ForgotPasswordFormProps {
-  onSubmit?: (email: string) => Promise<void> | void;
-}
-
-export default function ForgotPasswordForm({
-  onSubmit,
-}: ForgotPasswordFormProps) {
+export default function ForgotPasswordForm() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
@@ -22,21 +16,18 @@ export default function ForgotPasswordForm({
     setSuccess(null);
 
     if (!emailValid) {
-      setError("Enter a valid email address");
+      setError("Please enter a valid email");
       return;
     }
 
     try {
       setLoading(true);
-      if (onSubmit) {
-        await onSubmit(email.trim());
-      } else {
-        await new Promise((r) => setTimeout(r, 1000));
-      }
+      // Demo delay — replace with API call
+      await new Promise((r) => setTimeout(r, 1200));
       setSuccess("Reset link sent to your email");
       setEmail("");
     } catch (err: any) {
-      setError(err?.message || "Failed to send reset link");
+      setError(err?.message || "Something went wrong");
     } finally {
       setLoading(false);
     }
@@ -45,10 +36,8 @@ export default function ForgotPasswordForm({
   return (
     <div className={styles.wrapper}>
       <div className={styles.card}>
-        <h1 className={styles.title}>Forgot password?</h1>
-        <p className={styles.subtitle}>
-          Enter your email to reset your password
-        </p>
+        <h1 className={styles.title}>Forgot Password</h1>
+        <p className={styles.subtitle}>Enter your email to reset your password</p>
 
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.field}>
@@ -71,6 +60,7 @@ export default function ForgotPasswordForm({
               <AlertCircle size={16} /> {error}
             </div>
           )}
+
           {success && (
             <div className={styles.alertSuccess}>
               <CheckCircle2 size={16} /> {success}
@@ -90,6 +80,10 @@ export default function ForgotPasswordForm({
               "Send reset link"
             )}
           </button>
+
+          <p className={styles.bottomText}>
+            Remembered your password? <a href="#">Sign in</a>
+          </p>
         </form>
       </div>
     </div>
