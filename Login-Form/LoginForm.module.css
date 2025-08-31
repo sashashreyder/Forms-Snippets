@@ -51,7 +51,7 @@
 
 .inputWrapper input {
   width: 100%;
-  padding: 10px 38px 10px 38px;
+  padding: 12px 44px 12px 44px; /* больше отступы для иконок */
   border: 1px solid #d1d5db;
   border-radius: 8px;
   font-size: 15px;
@@ -70,18 +70,26 @@
 
 .icon {
   position: absolute;
-  left: 12px;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
   color: #94a3b8;
+  pointer-events: none;
 }
 
 .eye {
   position: absolute;
-  right: 12px;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
   background: transparent;
   border: none;
   cursor: pointer;
   color: #64748b;
   padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .options {
@@ -168,12 +176,8 @@
 }
 
 @keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .bottomText {
@@ -192,3 +196,4 @@
 .bottomText a:hover {
   text-decoration: underline;
 }
+
