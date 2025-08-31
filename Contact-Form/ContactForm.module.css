@@ -17,7 +17,7 @@
 }
 
 .title {
-  margin: 0%;
+  margin: 0;
   font-size: 22px;
   font-weight: 600;
 }
@@ -46,13 +46,20 @@
 .textareaWrapper {
   position: relative;
   display: flex;
+}
+
+.inputWrapper {
   align-items: center;
+}
+
+.textareaWrapper {
+  align-items: flex-start;
 }
 
 .inputWrapper input,
 .textareaWrapper textarea {
   width: 100%;
-  padding: 12px 38px;
+  padding: 12px 14px 12px 44px;
   border: 1px solid #d1d5db;
   border-radius: 8px;
   font-size: 15px;
@@ -60,9 +67,10 @@
 }
 
 .textareaWrapper textarea {
-  min-height: 120px;
+  min-height: 100px;
   resize: vertical;
-  line-height: 1.4;
+  line-height: 1.5;
+  padding: 14px 14px 14px 44px;
 }
 
 .inputWrapper input:focus,
@@ -74,10 +82,13 @@
 
 .icon {
   position: absolute;
-  left: 12px;
+  left: 14px;
+  color: #94a3b8;
+}
+
+.inputWrapper .icon {
   top: 50%;
   transform: translateY(-50%);
-  color: #94a3b8;
 }
 
 .textareaWrapper .icon {
@@ -106,17 +117,18 @@
 }
 
 .btn {
-  width: 100%;
+  height: 42px;
   background: linear-gradient(135deg, #3b82f6, #2563eb);
   color: white;
   border: none;
   border-radius: 8px;
-  padding: 12px;
+  padding: 0 20px;
   font-size: 15px;
   font-weight: 500;
   cursor: pointer;
   transition: transform 0.2s, opacity 0.2s;
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  align-self: flex-end;
 }
 
 .btn:hover {
@@ -135,10 +147,7 @@
 }
 
 @keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
+
