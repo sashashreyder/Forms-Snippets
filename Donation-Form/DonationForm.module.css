@@ -1,116 +1,235 @@
 .container {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(135deg, #f9fafb, #e0f2fe);
-  padding: 20px;
-}
-
-.form {
-  background: #fff;
-  border-radius: 16px;
-  padding: 30px;
-  width: 100%;
-  max-width: 420px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+  min-height: 100vh;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 440px;
+  padding: 30px 24px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+}
+
+.note {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-bottom: 12px;
+  text-align: center;
+  line-height: 1.4;
+  width: 70%;
+  margin-bottom: 30px;
 }
 
 .title {
-  font-size: 1.6rem;
+  margin-bottom: 20px;
   text-align: center;
-  color: #0f172a;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
+  font-size: 1.4rem;
   font-weight: 700;
-}
-
-.redHeart {
-  color: #ef4444;
+  color: #111827;
 }
 
 .amounts {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
   justify-content: center;
+  gap: 10px;
+  margin-bottom: 15px;
 }
 
-.amountBtn {
-  flex: 1;
-  min-width: 80px;
-  padding: 12px;
+.amountOption {
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  border: 1px solid #e5e7eb;
   border-radius: 10px;
-  border: 2px solid #e2e8f0;
-  background: #f8fafc;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #1e293b;
-  transition: all 0.3s ease;
+  background: #f9fafb;
   cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease,
+    color 0.2s ease;
+  color: #111827;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.02);
 }
 
-.amountBtn:hover {
-  background: #e0f2fe;
-  border-color: #38bdf8;
-}
-
-.active {
-  background: #38bdf8;
-  color: #fff;
-  border-color: #38bdf8;
-}
-
-.customInput {
-  flex: 1;
-  min-width: 100px;
-  padding: 12px;
-  border-radius: 10px;
-  border: 2px solid #e2e8f0;
-  font-size: 1rem;
+.amountOption:hover,
+.amountOption:focus-visible {
+  background: #e7a1a1;
+  box-shadow: 0 6px 16px rgba(17, 24, 39, 0.08);
   outline: none;
-  text-align: center;
-  font-weight: 600;
 }
 
-.customInput:focus {
-  border-color: #38bdf8;
-  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.3);
+.selected {
+  background: #ef4444;
+  color: #fff !important;
+  border-color: #ef4444;
+  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.25);
+  transform: translateY(0);
 }
 
 .input {
-  padding: 12px;
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  border: 1px solid #d1d5db;
   border-radius: 10px;
-  border: 2px solid #e2e8f0;
-  font-size: 1rem;
-  outline: none;
-  transition: all 0.3s ease;
+  box-sizing: border-box;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
 }
 
 .input:focus {
-  border-color: #38bdf8;
-  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.3);
+  border: 1px solid #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.18);
+  outline: none;
 }
 
-.submitBtn {
-  margin-top: 10px;
-  padding: 14px;
-  border: none;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #0f172a, #334155);
+.button {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 600;
   color: #fff;
-  font-size: 1.1rem;
-  font-weight: 700;
+  background: #111827;
+  border: none;
+  border-radius: 10px;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: background 0.25s ease, transform 0.12s ease, box-shadow 0.2s ease;
+  box-shadow: 0 6px 16px rgba(17, 24, 39, 0.12);
 }
 
-.submitBtn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.4);
+.button:hover {
+  background: #ef4444;
+
+  box-shadow: 0 10px 24px rgba(239, 68, 68, 0.25);
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(15, 23, 42, 0.55);
+  z-index: 50;
+}
+
+.modal {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  padding: 22px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  animation: popIn 180ms ease-out;
+}
+
+.modalTitle {
+  margin-bottom: 12px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.modalText {
+  margin-bottom: 16px;
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+.modalButton {
+  width: 100%;
+  padding: 12px;
+  font-weight: 600;
+  color: #fff;
+  background: #111827;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.12s ease, box-shadow 0.2s ease;
+  box-shadow: 0 6px 16px rgba(17, 24, 39, 0.12);
+}
+
+.modalButton:hover {
+  background: #ef4444;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(239, 68, 68, 0.22);
+}
+
+.modalClose {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #6b7280;
+}
+
+.modalClose:hover {
+  color: #cd4c4c;
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+@keyframes popIn {
+  from {
+    transform: translateY(8px) scale(0.98);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 20px;
+    gap: 15px;
+  }
+  .card {
+    width: 100%;
+    max-width: 320px;
+    padding: 20px 16px;
+  }
+  .title {
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+  }
+  .amountOption {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+  .input {
+    font-size: 0.9rem;
+    padding: 10px 12px;
+  }
+  .button {
+    font-size: 0.95rem;
+    padding: 10px;
+  }
 }
