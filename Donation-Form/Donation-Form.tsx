@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import styles from "./App.module.css";
+import styles from "./DonationForm.module.css";
 
 type FormData = {
   name: string;
