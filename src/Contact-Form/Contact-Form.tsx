@@ -1,9 +1,20 @@
 import React, { useState } from "react";
-import { User, Mail, MessageSquare, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
+import {
+  User,
+  Mail,
+  MessageSquare,
+  Loader2,
+  CheckCircle2,
+  AlertCircle,
+} from "lucide-react";
 import styles from "./ContactForm.module.css";
 
 interface ContactFormProps {
-  onSubmit?: (data: { name: string; email: string; message: string }) => Promise<void> | void;
+  onSubmit?: (data: {
+    name: string;
+    email: string;
+    message: string;
+  }) => Promise<void> | void;
 }
 
 export default function ContactForm({ onSubmit }: ContactFormProps) {
@@ -15,7 +26,8 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
   const [success, setSuccess] = useState<string | null>(null);
 
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  const formValid = name.trim().length > 1 && emailValid && message.trim().length > 5;
+  const formValid =
+    name.trim().length > 1 && emailValid && message.trim().length > 5;
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -30,7 +42,11 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
     try {
       setLoading(true);
       if (onSubmit) {
-        await onSubmit({ name: name.trim(), email: email.trim(), message: message.trim() });
+        await onSubmit({
+          name: name.trim(),
+          email: email.trim(),
+          message: message.trim(),
+        });
       } else {
         await new Promise((r) => setTimeout(r, 1200));
       }
@@ -104,7 +120,11 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
             </div>
           )}
 
-          <button type="submit" disabled={!formValid || loading} className={styles.btn}>
+          <button
+            type="submit"
+            disabled={!formValid || loading}
+            className={styles.btn}
+          >
             {loading ? (
               <>
                 <Loader2 className={styles.spin} size={16} /> Sending...
