@@ -133,7 +133,7 @@
 
 .checkbox {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 8px;
   font-size: 13px;
   color: #475569;
