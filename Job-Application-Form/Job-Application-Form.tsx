@@ -2,7 +2,7 @@ import React from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import styles from "./JobApplication.module.css";
+import styles from "./App.module.css";
 
 const dateField = z
   .string()
@@ -120,74 +120,77 @@ const App: React.FC = () => {
         <p className={styles.subtitle}>Please fill out the form carefully</p>
 
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-          <div className={styles.field}>
-            <label>Full Name *</label>
-            <input
-              type="text"
-              placeholder="John Doe"
-              {...register("fullName")}
-              className={errors.fullName ? styles.invalid : ""}
-            />
-            {errors.fullName?.message && (
-              <span className={styles.errorText}>
-                {errors.fullName.message.toString()}
-              </span>
-            )}
-          </div>
+          <h2 className={styles.sectionTitle}>Personal Information</h2>
+          <div className={styles.subCard}>
+            <div className={styles.field}>
+              <label>Full Name *</label>
+              <input
+                type="text"
+                placeholder="John Doe"
+                {...register("fullName")}
+                className={errors.fullName ? styles.invalid : ""}
+              />
+              {errors.fullName?.message && (
+                <span className={styles.errorText}>
+                  {errors.fullName.message.toString()}
+                </span>
+              )}
+            </div>
 
-          <div className={styles.field}>
-            <label>Email *</label>
-            <input
-              type="email"
-              placeholder="you@example.com"
-              {...register("email")}
-              className={errors.email ? styles.invalid : ""}
-            />
-            {errors.email?.message && (
-              <span className={styles.errorText}>
-                {errors.email.message.toString()}
-              </span>
-            )}
-          </div>
+            <div className={styles.field}>
+              <label>Email *</label>
+              <input
+                type="email"
+                placeholder="you@example.com"
+                {...register("email")}
+                className={errors.email ? styles.invalid : ""}
+              />
+              {errors.email?.message && (
+                <span className={styles.errorText}>
+                  {errors.email.message.toString()}
+                </span>
+              )}
+            </div>
 
-          <div className={styles.field}>
-            <label>Phone *</label>
-            <input
-              type="tel"
-              placeholder="+1 (555) 123-4567"
-              {...register("phone")}
-              className={errors.phone ? styles.invalid : ""}
-            />
-            {errors.phone?.message && (
-              <span className={styles.errorText}>
-                {errors.phone.message.toString()}
-              </span>
-            )}
-          </div>
+            <div className={styles.field}>
+              <label>Phone *</label>
+              <input
+                type="tel"
+                placeholder="+1 (555) 123-4567"
+                {...register("phone")}
+                className={errors.phone ? styles.invalid : ""}
+              />
+              {errors.phone?.message && (
+                <span className={styles.errorText}>
+                  {errors.phone.message.toString()}
+                </span>
+              )}
+            </div>
 
-          <div className={styles.field}>
-            <label>Desired Salary *</label>
-            <input
-              type="text"
-              placeholder="$60,000 / year"
-              {...register("desiredSalary")}
-              className={errors.desiredSalary ? styles.invalid : ""}
-            />
-            {errors.desiredSalary?.message && (
-              <span className={styles.errorText}>
-                {errors.desiredSalary.message.toString()}
-              </span>
-            )}
-          </div>
+            <div className={styles.field}>
+              <label>Desired Salary *</label>
+              <input
+                type="text"
+                placeholder="$60,000 / year"
+                {...register("desiredSalary")}
+                className={errors.desiredSalary ? styles.invalid : ""}
+              />
+              {errors.desiredSalary?.message && (
+                <span className={styles.errorText}>
+                  {errors.desiredSalary.message.toString()}
+                </span>
+              )}
+            </div>
 
-          <div className={styles.field}>
-            <label>Resume (PDF or DOCX) *</label>
-            <input type="file" {...register("resume")} />
-            {errors.resume?.message && (
-              <span className={styles.errorText}>
-                {errors.resume.message.toString()}
-              </span>
-            )}
+            <div className={styles.field}>
+              <label>Resume (PDF or DOCX) *</label>
+              <input type="file" {...register("resume")} />
+              {errors.resume?.message && (
+                <span className={styles.errorText}>
+                  {errors.resume.message.toString()}
+                </span>
+              )}
+            </div>
           </div>
 
           <h2 className={styles.sectionTitle}>Work Experience</h2>
@@ -372,3 +375,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+
