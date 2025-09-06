@@ -1,0 +1,140 @@
+.container {
+  position: fixed;
+  z-index: 1000;
+  padding: 14px;
+  pointer-events: none;
+  display: flex;
+  gap: 10px;
+}
+.top-right {
+  top: 0;
+  right: 0;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.top-left {
+  top: 0;
+  left: 0;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.bottom-right {
+  bottom: 0;
+  right: 0;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+}
+.bottom-left {
+  bottom: 0;
+  left: 0;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+}
+
+.toast {
+  pointer-events: auto;
+  display: grid;
+  grid-template-columns: 4px 1fr auto;
+  align-items: start;
+  gap: 12px;
+  min-width: 280px;
+  max-width: min(92vw, 460px);
+  border-radius: 12px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12),
+    0 2px 8px rgba(15, 23, 42, 0.06);
+  backdrop-filter: blur(4px);
+  padding: 12px 14px;
+  animation: slideIn 180ms cubic-bezier(0.2, 0.8, 0.2, 1), fadeIn 180ms ease;
+}
+
+.accent {
+  width: 4px;
+  height: 100%;
+  border-radius: 999px;
+}
+
+.body {
+  display: grid;
+  gap: 2px;
+  padding-right: 6px;
+}
+.title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #0f172a;
+}
+.message {
+  font-size: 0.92rem;
+  color: #1f2937;
+  line-height: 1.35;
+}
+
+.close {
+  align-self: start;
+  border: none;
+  background: transparent;
+  color: #475569;
+  font-size: 18px;
+  line-height: 1;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.close:hover {
+  background: rgba(15, 23, 42, 0.06);
+  color: #111827;
+}
+
+/* colored, but soft */
+.success {
+  background: #ecfdf5;
+}
+.success .accent {
+  background: #10b981;
+}
+.error {
+  background: #fef2f2;
+}
+.error .accent {
+  background: #ef4444;
+}
+.warning {
+  background: #fffbeb;
+}
+.warning .accent {
+  background: #f59e0b;
+}
+.info {
+  background: #eff6ff;
+}
+.info .accent {
+  background: #3b82f6;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(6px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 520px) {
+  .toast {
+    min-width: 0;
+    width: 100%;
+    border-radius: 10px;
+  }
+}
