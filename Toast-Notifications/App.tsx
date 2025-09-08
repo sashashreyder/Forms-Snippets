@@ -1,23 +1,45 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styles from "./App.module.css";
 
-type ToastType = "success" | "error" | "warning" | "info" | null;
+type ToastType = "success" | "error" | "warning" | "info";
+type Phase = "pre" | "enter" | "leave";
+
+type Toast = {
+  id: string;
+  type: ToastType;
+  message: string;
+  phase: Phase;
+};
 
 const App: React.FC = () => {
-  const [toast, setToast] = useState<ToastType>(null);
+  const [toasts, setToasts] = useState<Toast[]>([]);
 
-  useEffect(() => {
-    if (toast) {
-      const timer = setTimeout(() => setToast(null), 4000);
-      return () => clearTimeout(timer);
-    }
-  }, [toast]);
-
-  const messages: Record<Exclude<ToastType, null>, string> = {
+  const messages: Record<ToastType, string> = {
     success: "Your changes have been saved.",
     error: "Something went wrong.",
     warning: "Please double-check your input.",
     info: "A new version is available.",
+  };
+
+  const showToast = (type: ToastType) => {
+    const id = Math.random().toString(36).slice(2, 9);
+    const base: Toast = { id, type, message: messages[type], phase: "pre" };
+    setToasts((prev) => [base, ...prev]);
+    requestAnimationFrame(() => {
+      setToasts((prev) =>
+        prev.map((t) => (t.id === id ? { ...t, phase: "enter" } : t))
+      );
+    });
+    setTimeout(() => startDismiss(id), 4000);
+  };
+
+  const startDismiss = (id: string) => {
+    setToasts((prev) =>
+      prev.map((t) => (t.id === id ? { ...t, phase: "leave" } : t))
+    );
+    setTimeout(() => {
+      setToasts((prev) => prev.filter((t) => t.id !== id));
+    }, 380);
   };
 
   return (
@@ -29,39 +51,59 @@ const App: React.FC = () => {
         </p>
         <div className={styles.buttons}>
           <button
-            onClick={() => setToast("success")}
+            onClick={() => showToast("success")}
             className={styles.successBtn}
           >
             Success
           </button>
-          <button onClick={() => setToast("error")} className={styles.errorBtn}>
+          <button
+            onClick={() => showToast("error")}
+            className={styles.errorBtn}
+          >
             Error
           </button>
           <button
-            onClick={() => setToast("warning")}
+            onClick={() => showToast("warning")}
             className={styles.warningBtn}
           >
             Warning
           </button>
-          <button onClick={() => setToast("info")} className={styles.infoBtn}>
+          <button onClick={() => showToast("info")} className={styles.infoBtn}>
             Info
           </button>
         </div>
       </div>
 
-      {toast && (
-        <div className={`${styles.toast} ${styles[toast]}`}>
-          <div className={styles.toastContent}>
-            <strong className={styles.toastTitle}>
-              {toast.charAt(0).toUpperCase() + toast.slice(1)}
-            </strong>
-            <p className={styles.toastMessage}>{messages[toast]}</p>
+      <div className={styles.toastStack}>
+        {toasts.map((t) => (
+          <div
+            key={t.id}
+            className={[
+              styles.toastItem,
+              styles[`t_${t.type}`],
+              t.phase === "pre"
+                ? styles.pre
+                : t.phase === "enter"
+                ? styles.enter
+                : styles.leave,
+            ].join(" ")}
+          >
+            <div className={styles.toastAccent} />
+            <div className={styles.toastBody}>
+              <div className={styles.toastTitle}>
+                {t.type.charAt(0).toUpperCase() + t.type.slice(1)}
+              </div>
+              <div className={styles.toastMessage}>{t.message}</div>
+            </div>
+            <button
+              className={styles.toastClose}
+              onClick={() => startDismiss(t.id)}
+            >
+              ×
+            </button>
           </div>
-          <button className={styles.toastClose} onClick={() => setToast(null)}>
-            ×
-          </button>
-        </div>
-      )}
+        ))}
+      </div>
     </div>
   );
 };
