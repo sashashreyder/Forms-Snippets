@@ -1,0 +1,123 @@
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f0f9ff;
+  font-family: "Segoe UI", sans-serif;
+  padding: 20px;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  padding: 32px;
+  max-width: 480px;
+  width: 100%;
+}
+
+.progress {
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  transition: width 0.3s ease;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field label {
+  font-size: 14px;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 6px;
+  color: #1e293b;
+}
+
+.field input[type="date"] {
+  font-family: inherit;
+  color: #1e293b;
+}
+
+.field input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: invert(40%) sepia(60%) saturate(500%) hue-rotate(200deg);
+}
+
+.field input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.field input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+  outline: none;
+}
+
+.error {
+  color: #dc2626;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  gap: 12px;
+}
+
+.backBtn,
+.nextBtn,
+.submitBtn {
+  flex: 1;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.backBtn {
+  background: #f3f4f6;
+}
+.nextBtn {
+  background: #3b82f6;
+  color: #fff;
+}
+.submitBtn {
+  background: #10b981;
+  color: #fff;
+}
+
+.nextBtn:hover {
+  background: #2563eb;
+}
+.submitBtn:hover {
+  background: #059669;
+}
